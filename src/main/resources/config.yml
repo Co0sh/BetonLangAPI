@@ -1,0 +1,7 @@
+default_global_language: en
+mysql:
+  host: ''
+  port: ''
+  base: ''
+  user: ''
+  pass: ''

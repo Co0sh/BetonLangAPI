@@ -1,0 +1,28 @@
+name: BetonLangAPI
+main: pl.betoncraft.betonlangapi.BetonLangAPI
+description: Translations API for Bukkit plugins.
+authors: [Co0sh]
+website: http://github.com/Co0sh/BetonLangAPI
+version: 1.0.0
+commands:
+  language:
+    description: Handles languages.
+    usage: /<command> [player] [language]
+    permission: betonlangapi.command
+    aliases: [lang]
+  betonlangapi:
+    description: Reloads configuration and messages.
+    usage: /<command>
+    permission: betonlangapi.reload
+    aliases: [bla]
+permissions:
+  betonlangapi.command:
+    default: true
+  betonlangapi.view:
+    default: true
+  betonlangapi.self:
+    default: true
+  betonlangapi.other:
+    default: op
+  betonlangapi.reload:
+    default: op

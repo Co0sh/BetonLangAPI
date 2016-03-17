@@ -1,0 +1,16 @@
+en:
+  no_permission: '&cYou don''t have permission to use this command.'
+  available_langs: '&eAvailable languages:'
+  player_only: 'This command can only be used by players.'
+  no_language: '&cThere is no such language.'
+  lang_changed: '&aLanguage changed!'
+  player_offline: '&cThis player is offline.'
+  reloaded: '&aBetonLangAPI reloaded!'
+pl:
+  no_permission: '&cNie masz uprawnien do uzywania tej komendy.'
+  available_langs: '&eDostepne jezyki:'
+  player_only: 'Ta komenda moze byc uzywana tylko przez graczy.'
+  no_language: '&cNie ma takiego jezyka.'
+  lang_changed: '&aJezyk zmieniony!'
+  player_offline: '&cTen gracz jest offline.'
+  reloaded: '&aBetonLangAPI przeladowane!'
