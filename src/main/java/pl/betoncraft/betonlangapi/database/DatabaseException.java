@@ -26,18 +26,19 @@ package pl.betoncraft.betonlangapi.database;
 public class DatabaseException extends Exception {
 
 	private static final long serialVersionUID = -2356301473220048L;
-	
+
 	private final String message;
-	
+
 	/**
 	 * Creates new DatabaseException with specified message.
 	 * 
 	 * @param message
+	 *            description of the exception
 	 */
 	public DatabaseException(String message) {
 		this.message = message;
 	}
-	
+
 	@Override
 	public String getMessage() {
 		return message;

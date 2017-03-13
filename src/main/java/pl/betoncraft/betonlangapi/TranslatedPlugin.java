@@ -135,8 +135,6 @@ public class TranslatedPlugin {
 	 *            there are no message at all it will return null
 	 * @param name
 	 *            name of the message
-	 * @param variables
-	 *            variables to insert into the message
 	 * @return the message
 	 */
 	public String getMessage(String lang, String name) {

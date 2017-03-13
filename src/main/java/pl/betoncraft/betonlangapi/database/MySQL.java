@@ -48,7 +48,18 @@ public class MySQL extends Database {
 	/**
 	 * Creates a new MySQL instance.
 	 * 
+	 * @param hostname
+	 *            the name of the host
+	 * @param port
+	 *            port of the database
+	 * @param database
+	 *            database name
+	 * @param username
+	 *            username to use
+	 * @param password
+	 *            password for that username
 	 * @throws DatabaseException
+	 *             when it's not possible to connect to the database
 	 */
 	public MySQL(String hostname, String port, String database, String username, String password)
 			throws DatabaseException {

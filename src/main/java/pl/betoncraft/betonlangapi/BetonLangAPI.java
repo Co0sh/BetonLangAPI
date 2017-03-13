@@ -184,8 +184,6 @@ public class BetonLangAPI extends JavaPlugin implements Listener {
 	/**
 	 * Returns the list of available languages.
 	 * 
-	 * @param lang
-	 *            the language code
 	 * @return the ArrayList of languages
 	 */
 	public static ArrayList<String> getLanguages() {
@@ -280,8 +278,6 @@ public class BetonLangAPI extends JavaPlugin implements Listener {
 	 *            plugin owning this message
 	 * @param messageName
 	 *            name of the key used to store the message in YAML file
-	 * @param variables
-	 *            array of objects which will be inserted into the message
 	 * @return the translated message, with converted color codes and inserted
 	 *         variables
 	 */
