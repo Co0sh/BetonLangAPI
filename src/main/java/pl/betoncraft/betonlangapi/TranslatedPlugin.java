@@ -126,8 +126,7 @@ public class TranslatedPlugin {
 	}
 
 	/**
-	 * Retrieves specified message in specified language. It replaces variables
-	 * with specified objects and converts color codes.
+	 * Retrieves specified message in specified language.
 	 * 
 	 * @param lang
 	 *            language in which the message will be retrieved; if there is

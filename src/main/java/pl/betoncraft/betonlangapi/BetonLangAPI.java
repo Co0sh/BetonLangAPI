@@ -144,6 +144,10 @@ public class BetonLangAPI extends JavaPlugin implements Listener {
 		// register this plugin, because it can interact with players via
 		// /language command
 		registerPlugin(this, new TranslatedPlugin(this, globalDefaultLanguage));
+		// load all online players
+		for (Player player : Bukkit.getOnlinePlayers()) {
+			loadPlayer(player.getUniqueId());
+		}
 	}
 
 	@Override
@@ -157,9 +161,21 @@ public class BetonLangAPI extends JavaPlugin implements Listener {
 		// don't load anything if the player was not let in
 		if (event.getLoginResult() != Result.ALLOWED)
 			return;
+		loadPlayer(event.getUniqueId());
+	}
+
+	/**
+	 * Loads player's language from the database and stores in in the plugin.
+	 * 
+	 * @param uuid
+	 *            unique ID of the player
+	 * @return the player's language
+	 */
+	private String loadPlayer(UUID uuid) {
 		// load player's language or use default one
-		String lang = BetonLangAPI.getDB().load(event.getUniqueId());
-		players.put(event.getUniqueId(), lang);
+		String lang = BetonLangAPI.getDB().load(uuid);
+		players.put(uuid, lang);
+		return lang;
 	}
 
 	/**
@@ -266,9 +282,9 @@ public class BetonLangAPI extends JavaPlugin implements Listener {
 	}
 
 	/**
-	 * Retrieves the message from the specified plugin in player's language and
-	 * replaces the variables with given objects. You should probably create a
-	 * wrapper method of this, for convenience.
+	 * Retrieves the message from the specified plugin in player's language. You
+	 * should probably create a wrapper around this method to replace variables
+	 * and color codes.
 	 * 
 	 * @param player
 	 *            command sender (or simply player) for whom this message should
@@ -278,20 +294,36 @@ public class BetonLangAPI extends JavaPlugin implements Listener {
 	 *            plugin owning this message
 	 * @param messageName
 	 *            name of the key used to store the message in YAML file
-	 * @return the translated message, with converted color codes and inserted
-	 *         variables
+	 * @return the translated message
 	 */
 	public static String getMessage(CommandSender player, Plugin plugin, String messageName) {
+		String lang;
+		if (player == null || !(player instanceof Player)) {
+			lang = null;
+		} else {
+			lang = players.get(((Player) player).getUniqueId());
+		};
+		return getMessage(lang, plugin, messageName);
+	}
+	
+	/**
+	 * Retrieves the message from the specified plugin in specified language.
+	 * 
+	 * @param language
+	 *            language of the message
+	 * @param plugin
+	 *            plugin containing the message
+	 * @param messageName
+	 *            name of the message
+	 * @return the translated message
+	 */
+	public static String getMessage(String language, Plugin plugin, String messageName) {
 		TranslatedPlugin translatedPlugin = plugins.get(plugin.getName());
 		if (translatedPlugin == null)
 			return null;
-		String lang;
-		if (player == null || !(player instanceof Player)) {
-			lang = translatedPlugin.getDefaultLang();
-		} else {
-			lang = players.get(((Player) player).getUniqueId());
-		}
-		return translatedPlugin.getMessage(lang, messageName);
+		if (language == null)
+			language = translatedPlugin.getDefaultLang();
+		return translatedPlugin.getMessage(language, messageName);
 	}
 
 	/**
