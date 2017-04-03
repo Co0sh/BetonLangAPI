@@ -30,7 +30,7 @@ import org.bukkit.event.HandlerList;
  */
 public class PlayerLanguageChangeEvent extends Event implements Cancellable {
 
-	private final HandlerList handlers = new HandlerList();
+	private final static HandlerList handlers = new HandlerList();
 
 	private final Player player;
 	private final String language;
@@ -76,6 +76,10 @@ public class PlayerLanguageChangeEvent extends Event implements Cancellable {
 
 	@Override
 	public HandlerList getHandlers() {
+		return handlers;
+	}
+
+	public static HandlerList getHandlerList() {
 		return handlers;
 	}
 
