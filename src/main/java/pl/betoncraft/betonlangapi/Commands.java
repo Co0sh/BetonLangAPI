@@ -18,6 +18,8 @@
 
 package pl.betoncraft.betonlangapi;
 
+import java.util.stream.Collectors;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -45,9 +47,13 @@ public class Commands implements CommandExecutor {
 			case 0:
 				if (!sender.hasPermission(VIEW_PERM))
 					return sendMessage(sender, "no_permission");
-				sendMessage(sender, "available_langs");
+				String available = String.join(" / ", BetonLangAPI.getLanguages().stream()
+						.map(lang -> BetonLangAPI.getMessage(lang, BetonLangAPI.getInstance(), "available_langs"))
+						.collect(Collectors.toList()));
+				sender.sendMessage(ChatColor.YELLOW + available + ":");
 				for (String lang : BetonLangAPI.getLanguages()) {
-					sender.sendMessage(ChatColor.AQUA + lang);
+					sender.sendMessage(ChatColor.AQUA + "/" + label + " " + lang + ChatColor.GREEN + " - " +
+							BetonLangAPI.getMessage(lang, BetonLangAPI.getInstance(), "lang_name"));
 				}
 				return true;
 			case 1:

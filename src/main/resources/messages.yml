@@ -1,6 +1,7 @@
 en:
   no_permission: '&cYou don''t have permission to use this command.'
-  available_langs: '&eAvailable languages:'
+  available_langs: 'Available languages'
+  lang_name: English
   player_only: 'This command can only be used by players.'
   no_language: '&cThere is no such language.'
   lang_changed: '&aLanguage changed!'
@@ -8,7 +9,8 @@ en:
   reloaded: '&aBetonLangAPI reloaded!'
 pl:
   no_permission: '&cNie masz uprawnien do uzywania tej komendy.'
-  available_langs: '&eDostepne jezyki:'
+  available_langs: 'Dostepne jezyki'
+  lang_name: polski
   player_only: 'Ta komenda moze byc uzywana tylko przez graczy.'
   no_language: '&cNie ma takiego jezyka.'
   lang_changed: '&aJezyk zmieniony!'
