@@ -3,7 +3,8 @@ main: pl.betoncraft.betonlangapi.BetonLangAPI
 description: Translations API for Bukkit plugins.
 authors: [Co0sh]
 website: http://github.com/Co0sh/BetonLangAPI
-version: 1.1.2
+softdepend: [PlaceholderAPI]
+version: 1.2.0
 commands:
   language:
     description: Handles languages.

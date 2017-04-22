@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package pl.betoncraft.betonlangapi;
 
 import java.util.stream.Collectors;
@@ -32,7 +31,6 @@ import org.bukkit.permissions.Permission;
  * Handles language and reload commands.
  * 
  * @author Jakub Sapalski
- * @version 1.0.0
  */
 public class Commands implements CommandExecutor {
 

@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>pl.betoncraft.betonlangapi</groupId>
 	<artifactId>BetonLangAPI</artifactId>
-	<version>1.1.2</version>
+	<version>1.2.0</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -69,12 +69,21 @@
 			<id>spigot-api</id>
 			<url>https://hub.spigotmc.org/nexus/content/repositories/snapshots</url>
 		</repository>
+		<repository>
+			<id>betonquest-repo</id>
+			<url>http://betonquest.betoncraft.pl/mvn</url>
+		</repository>
 	</repositories>
 	<dependencies>
 		<dependency>
 			<groupId>org.bukkit</groupId>
 			<artifactId>bukkit</artifactId>
 			<version>1.9-R0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>me.clip</groupId>
+			<artifactId>PlaceholderAPI</artifactId>
+			<version>2.5.1</version>
 		</dependency>
 	</dependencies>
 </project>

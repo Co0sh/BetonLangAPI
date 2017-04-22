@@ -42,6 +42,7 @@ import pl.betoncraft.betonlangapi.database.Database;
 import pl.betoncraft.betonlangapi.database.DatabaseException;
 import pl.betoncraft.betonlangapi.database.FlatFile;
 import pl.betoncraft.betonlangapi.database.MySQL;
+import pl.betoncraft.betonlangapi.placeholderapi.PlaceholderHandler;
 
 /**
  * <h1>BetonLangAPI</h1>
@@ -83,7 +84,6 @@ import pl.betoncraft.betonlangapi.database.MySQL;
  * </p>
  * 
  * @author Jakub Sapalski
- * @version 1.0.0
  */
 public class BetonLangAPI extends JavaPlugin implements Listener {
 
@@ -93,6 +93,7 @@ public class BetonLangAPI extends JavaPlugin implements Listener {
 	private static ArrayList<String> languages = new ArrayList<>();
 	private static String globalDefaultLanguage;
 	private static Database database;
+	private static PlaceholderHandler placeholderHandler;
 
 	@Override
 	public void onEnable() {
@@ -141,6 +142,8 @@ public class BetonLangAPI extends JavaPlugin implements Listener {
 		Bukkit.getPluginManager().registerEvents(this, this);
 		getCommand("language").setExecutor(new Commands());
 		getCommand("betonlangapi").setExecutor(new Commands());
+		// add integration with PlaceholderAPI
+		placeholderHandler = new PlaceholderHandler();
 		// register this plugin, because it can interact with players via
 		// /language command
 		registerPlugin(this, new TranslatedPlugin(this, globalDefaultLanguage));
@@ -286,24 +289,28 @@ public class BetonLangAPI extends JavaPlugin implements Listener {
 	 * should probably create a wrapper around this method to replace variables
 	 * and color codes.
 	 * 
-	 * @param player
-	 *            command sender (or simply player) for whom this message should
-	 *            be retrieved; if the player is null, returns the message in
-	 *            default language
+	 * @param sender
+	 *            command sender for whom this message should be retrieved; if
+	 *            the player is null, returns the message in default language
 	 * @param plugin
 	 *            plugin owning this message
 	 * @param messageName
 	 *            name of the key used to store the message in YAML file
 	 * @return the translated message
 	 */
-	public static String getMessage(CommandSender player, Plugin plugin, String messageName) {
+	public static String getMessage(CommandSender sender, Plugin plugin, String messageName) {
 		String lang;
-		if (player == null || !(player instanceof Player)) {
+		if (sender == null || !(sender instanceof Player)) {
 			lang = null;
 		} else {
-			lang = players.get(((Player) player).getUniqueId());
+			lang = players.get(((Player) sender).getUniqueId());
 		};
-		return getMessage(lang, plugin, messageName);
+		String message = getMessage(lang, plugin, messageName);
+		if (sender instanceof Player) {
+			Player player = (Player) sender;
+			message = placeholderHandler.resolve(player, message);
+		}
+		return message;
 	}
 	
 	/**
@@ -324,6 +331,15 @@ public class BetonLangAPI extends JavaPlugin implements Listener {
 		if (language == null)
 			language = translatedPlugin.getDefaultLang();
 		return translatedPlugin.getMessage(language, messageName);
+	}
+	
+	/**
+	 * Returns the instance of the PlaceholderHandler.
+	 * 
+	 * @return the PlaceholderHandler instance
+	 */
+	public static PlaceholderHandler getPlaceholders() {
+		return placeholderHandler;
 	}
 
 	/**

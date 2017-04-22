@@ -137,22 +137,18 @@ public class TranslatedPlugin {
 	 * @return the message
 	 */
 	public String getMessage(String lang, String name) {
-		String message;
+		String message = null;
 		HashMap<String, String> translation = translations.get(lang);
 		if (translation != null) {
 			message = translation.get(name);
-			if (message != null) {
-				return message;
+		}
+		if (message == null) {
+			translation = translations.get(defaultLang);
+			if (translation != null) {
+				message = translation.get(name);
 			}
 		}
-		translation = translations.get(defaultLang);
-		if (translation != null) {
-			message = translation.get(name);
-			if (message != null) {
-				return message;
-			}
-		}
-		return null;
+		return message;
 	}
 
 }
