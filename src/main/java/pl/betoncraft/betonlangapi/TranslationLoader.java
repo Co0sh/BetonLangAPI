@@ -68,7 +68,7 @@ public interface TranslationLoader {
 				YamlConfiguration yaml = YamlConfiguration.loadConfiguration(file);
 				for (String lang : yaml.getKeys(false)) {
 					HashMap<String, String> translation = new HashMap<>();
-					for (String key : yaml.getConfigurationSection(lang).getKeys(false)) {
+					for (String key : yaml.getConfigurationSection(lang).getKeys(true)) {
 						translation.put(key, yaml.getString(lang + "." + key));
 					}
 					translations.put(lang, translation);

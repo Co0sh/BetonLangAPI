@@ -4,7 +4,7 @@ description: Translations API for Bukkit plugins.
 authors: [Co0sh]
 website: http://github.com/Co0sh/BetonLangAPI
 softdepend: [PlaceholderAPI]
-version: 1.2.0
+version: 1.2.1
 commands:
   language:
     description: Handles languages.
